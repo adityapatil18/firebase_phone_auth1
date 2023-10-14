@@ -26,6 +26,7 @@
 //   }
 // }
 
+import 'package:firebase_phone_auth1/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -80,9 +81,13 @@ class _MyAppState extends State<MyApp> {
       verificationId: receivedID,
       smsCode: otpController.text,
     );
-    await auth
-        .signInWithCredential(credential)
-        .then((value) => print('User Login In Successful'));
+    await auth.signInWithCredential(credential).then((value) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => LoginPage(),
+          ));
+    });
   }
 
   @override
